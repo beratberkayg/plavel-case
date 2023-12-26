@@ -42,8 +42,16 @@ const MultiSelect = () => {
     }
   }, []);
 
+  const submitFunc = (e: any) => {
+    e.preventDefault();
+    alert("Seçimleriniz : " + selectItem.map((item) => item.name));
+  };
+
   return (
-    <div className="border border-slate-200 w-[99%] mx-auto md:w-[40%] h-[500px] flex flex-col px-5 py-3 gap-5 bg-slate-50 rounded-lg">
+    <form
+      onSubmit={(e) => submitFunc(e)}
+      className="border border-slate-200 w-[99%] mx-auto md:w-[40%] h-[500px] flex flex-col px-5 py-3 gap-5 bg-slate-50 rounded-lg"
+    >
       <div className="text-xl font-medium">Kategoriler</div>
       <div className="flex items-center bg-white border-slate-200 border rounded-md pr-2 hover:border hover:border-blue-500 ">
         <input
@@ -130,10 +138,13 @@ const MultiSelect = () => {
         {filteredItems.length === 0 && <div>Sonuç Bulunamadı</div>}
       </div>
 
-      <button className="w-full text-center bg-blue-600 py-2 text-xl font-medium rounded-md text-white hover:bg-blue-500">
+      <button
+        type="submit"
+        className="w-full text-center bg-blue-600 py-2 text-xl font-medium rounded-md text-white hover:bg-blue-500"
+      >
         Ara
       </button>
-    </div>
+    </form>
   );
 };
 
