@@ -44,7 +44,11 @@ const MultiSelect = () => {
 
   const submitFunc = (e: any) => {
     e.preventDefault();
-    alert("Seçimleriniz : " + selectItem.map((item) => item.name));
+    if (selectItem.length > 0) {
+      alert("Seçimleriniz : " + selectItem.map((item) => item.name));
+    } else {
+      alert("Henüz bir seçim yapmadınız.");
+    }
   };
 
   return (
@@ -101,14 +105,16 @@ const MultiSelect = () => {
             key={i}
           >
             <input
-              className=""
+              className="cursor-pointer"
               checked={selectItem.includes(item)}
               onChange={() => addItem(item)}
               type="checkbox"
               name=""
               id=""
             />
-            <div className="truncate">{item.name}</div>
+            <div onClick={() => addItem(item)} className=" cursor-pointer">
+              {item.name}
+            </div>
           </div>
         ))}
         {filteredItems.map(
@@ -123,7 +129,7 @@ const MultiSelect = () => {
                 key={i}
               >
                 <input
-                  className=""
+                  className="cursor-pointer"
                   checked={selectItem.includes(item)}
                   onChange={() => addItem(item)}
                   type="checkbox"
@@ -131,7 +137,9 @@ const MultiSelect = () => {
                   id=""
                 />
 
-                <div>{item.name}</div>
+                <div className="cursor-pointer" onClick={() => addItem(item)}>
+                  {item.name}
+                </div>
               </div>
             )
         )}
